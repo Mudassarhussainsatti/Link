@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 
 totalInvites = 0
+numberOfConnections = 0
 page=2
 searchQuery =''
 sentTo = []
@@ -15,6 +16,7 @@ def initiateConnectionInvite(browser):
     global page
     global searchQuery
     global sentTo
+    global numberOfConnections
     with open('visited.txt') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -29,7 +31,7 @@ def initiateConnectionInvite(browser):
              sent = sendConnectionInivite(totalInvites, row[1], row[2], browser)
              if(sent):
                  totalInvites += 1
-                 if totalInvites >= 5:
+                 if totalInvites >= int(numberOfConnections):
                      break
                  else:
                      print()
@@ -44,14 +46,14 @@ def initiateConnectionInvite(browser):
              if (sent):
                  sentTo.append(row[2])
                  totalInvites += 1
-                 if totalInvites >= 5:
+                 if totalInvites >= int(numberOfConnections):
                   break
                  else:
                     print()
              else:
                     line_count += 1
         print('Total Invites sent so far',totalInvites)
-        if totalInvites >= 5:
+        if totalInvites >= int(numberOfConnections):
             with open('visited.txt', 'w+') as file:
                 file.close()
             logout(browser)
@@ -149,10 +151,12 @@ with open('sent.txt', 'a', newline='\n') as file:
     writer = csv.writer(file)
     writer.writerow('------------------')
 userInput = sys.argv[1]
-print("userInput",userInput)
+print('userInput', userInput)
 browser.get('https://linkedin.com/uas/login')
 upArr = userInput.split("|")
 searchQuery = upArr[2]
+numberOfConnections= upArr[3]
+print('Total Number Of connection',numberOfConnections)
 #searchQuery = searchKey.replace(" ","%20")
 elementID = browser.find_element_by_id('username')
 elementID.send_keys(upArr[0])
