@@ -1,15 +1,7 @@
 import os,random,sys,time
-<<<<<<< HEAD
 import csv
 from selenium import webdriver
 from bs4 import BeautifulSoup
-=======
-from urllib.parse import urlparse
-import csv
-from selenium import webdriver
-from bs4 import BeautifulSoup
-from selenium.webdriver.chrome.options import Options
->>>>>>> 12c150fba22832117fcf472843a3fdf358acbaec
 from selenium.webdriver.common.action_chains import ActionChains
 
 totalInvites = 0
@@ -38,10 +30,7 @@ def initiateConnectionInvite(browser):
              if(sent):
                  totalInvites += 1
                  if totalInvites >= int(numberOfConnections):
-<<<<<<< HEAD
                      print('Breakin Loop')
-=======
->>>>>>> 12c150fba22832117fcf472843a3fdf358acbaec
                      break
                  else:
                      print()
@@ -57,10 +46,7 @@ def initiateConnectionInvite(browser):
                  sentTo.append(row[2])
                  totalInvites += 1
                  if totalInvites >= int(numberOfConnections):
-<<<<<<< HEAD
                   print('Breakin Loop')
-=======
->>>>>>> 12c150fba22832117fcf472843a3fdf358acbaec
                   break
                  else:
                     print()
@@ -95,13 +81,6 @@ def sendConnectionInivite(number,name,link,browser):
          actions = ActionChains(browser)
          actions.click(element)
          actions.perform()
-<<<<<<< HEAD
-=======
-         element = browser.find_element_by_id('email')
-         actions = ActionChains(browser)
-         actions.click(element)
-         actions.perform()
->>>>>>> 12c150fba22832117fcf472843a3fdf358acbaec
          print('Error')
          return False
      except:
@@ -119,17 +98,12 @@ def sendConnectionInivite(number,name,link,browser):
              print('You’ve reached the weekly invitation limit')
              return False
          except:
-<<<<<<< HEAD
              element=browser.find_element_by_class_name('pv-s-profile-actions')
              if(element.text == 'Pending'):
                  print('Verified')
                  return True
              else:
                  return False
-=======
-             print()
-         return True
->>>>>>> 12c150fba22832117fcf472843a3fdf358acbaec
     except:
         print('Error')
         return False
@@ -159,15 +133,6 @@ def initiateSearch(browser,sq,page):
     initiateConnectionInvite(browser)
 
 
-<<<<<<< HEAD
-browser = webdriver.Chrome('chromedriver.exe')
-#chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('--headless')
-#chrome_options.add_argument('--no-sandbox')
-#chrome_options.add_argument('--disable-dev-shm-usage')
-#chrome_options.add_argument('window-size=1920x1480')
-#browser = webdriver.Chrome(options=chrome_options, executable_path='chromedriver.exe')
-=======
 #browser = webdriver.Chrome('chromedriver.exe')
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
@@ -175,7 +140,6 @@ chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('window-size=1920x1480')
 browser = webdriver.Chrome(options=chrome_options, executable_path='/project/chromedriver')
->>>>>>> 12c150fba22832117fcf472843a3fdf358acbaec
 with open('sent.txt') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
